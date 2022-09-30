@@ -15,6 +15,9 @@ namespace UserMaintenance_aqefte
         public Form1()
         {
             InitializeComponent();
+            labelLastName.Text = Resource.LastName;
+            labelFirstName.Text = Resource.FirstName;
+            button1.Text = Resource.Add;
         }
     }
 }
