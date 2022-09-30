@@ -22,6 +22,7 @@ namespace UserMaintenance_aqefte
             
             button1.Text = Resource.Add;
             button2.Text = Resource.Write;
+            button3.Text = Resource.Delete;
 
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
@@ -59,6 +60,11 @@ namespace UserMaintenance_aqefte
                     sw.Write(u.FullName);
                 }
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            users.Clear();
         }
     }
 }
