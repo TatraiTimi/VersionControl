@@ -18,8 +18,8 @@ namespace UserMaintenance_aqefte
         public Form1()
         {
             InitializeComponent();
-            labelLastName.Text = Resource.LastName;
-            labelFirstName.Text = Resource.FirstName;
+            labelFullName.Text = Resource.FullName;
+            
             button1.Text = Resource.Add;
             button2.Text = Resource.Write;
 
@@ -33,8 +33,7 @@ namespace UserMaintenance_aqefte
         {
             var u = new User()
             {
-                LastName = textBox1.Text,
-                FirstName = textBox2.Text,
+                FullName = textBox1.Text,
             };
 
             users.Add(u);
