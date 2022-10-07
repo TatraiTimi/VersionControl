@@ -71,14 +71,14 @@ namespace Excel_aqefte
             for (int i = 0; i < 8; i++)
             {
                 xlws.Cells[1, 1] = headers[0];
-                xlws.Cells[1,2]=headers[1]; 
-                xlws.Cells[1,3]=headers[2]; 
-                xlws.Cells[1,4]=headers[3]; 
-                xlws.Cells[1,5]=headers[4]; 
-                xlws.Cells[1,6]=headers[5]; 
-                xlws.Cells[1,7]=headers[6]; 
-                xlws.Cells[1,8]=headers[7]; 
-                xlws.Cells[1,9]=headers[8]; 
+                xlws.Cells[1, 2] = headers[1];
+                xlws.Cells[1, 3] = headers[2];
+                xlws.Cells[1, 4] = headers[3];
+                xlws.Cells[1, 5] = headers[4];
+                xlws.Cells[1, 6] = headers[5];
+                xlws.Cells[1, 7] = headers[6];
+                xlws.Cells[1, 8] = headers[7];
+                xlws.Cells[1, 9] = headers[8];
             }
 
             object[,] values = new object[flats.Count, headers.Length];
@@ -107,6 +107,15 @@ namespace Excel_aqefte
                     GetCell(2, 1),
                     GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
 
+                Excel.Range headerRange = xlws.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+                headerRange.Font.Bold = true;
+                headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                headerRange.EntireColumn.AutoFit();
+                headerRange.RowHeight = 40;
+                headerRange.Interior.Color = Color.LightBlue;
+                headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
             }
 
         }
@@ -122,14 +131,14 @@ namespace Excel_aqefte
             int dividend = y;
             int modulo;
 
-            while (dividend>0)
+            while (dividend > 0)
             {
                 modulo = (dividend - 1) % 26;
                 ExcelCoordinate = Convert.ToChar(65 + modulo).ToString() + ExcelCoordinate;
-                dividend=(int)((dividend-modulo)/26);
+                dividend = (int)((dividend - modulo) / 26);
             }
-            ExcelCoordinate+=x.ToString();
-            return ExcelCoordinate; 
+            ExcelCoordinate += x.ToString();
+            return ExcelCoordinate;
         }
     }
 }
