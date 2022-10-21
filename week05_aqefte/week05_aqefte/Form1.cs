@@ -18,12 +18,37 @@ namespace week05_aqefte
     {
         BindingList<RateData> Rates = new BindingList<RateData>();
         private string Result;
+        BindingList<string> Currencies = new BindingList<string>(); 
+        private string Currency;
 
         public Form1()
         {
             InitializeComponent();
+            comboBox1.DataSource = Currencies;
+            GetCurrencies();
+            XmlCurrenciesDocument();
             RefreshData();
            
+           
+        }
+
+        private void XmlCurrenciesDocument()
+        {
+            var xml = new XmlDocument();
+            xml.LoadXml(Currency);
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                Currencies.Add(Currency);
+            }
+        }
+
+        private void GetCurrencies()
+        {
+            var mnbService = new MNBArfolyamServiceSoapClient();
+            var requestcur=new GetCurrenciesRequestBody();
+            var response=mnbService.GetCurrencies(requestcur);  
+            var resultcur=response.GetCurrenciesResult; 
+            Currency=resultcur;
         }
 
         private void RefreshData()
@@ -61,6 +86,8 @@ namespace week05_aqefte
                 Rates.Add(rate);
                 rate.Date = DateTime.Parse(element.GetAttribute("date"));
                 var childElement = (XmlElement)element.ChildNodes[0];
+                if (childElement == null) continue;
+                
                 rate.Currency = childElement.GetAttribute("curr");
                 var unit = decimal.Parse(childElement.GetAttribute("unit"));
                 var value = decimal.Parse(childElement.InnerText);
@@ -79,7 +106,7 @@ namespace week05_aqefte
             {
                 currencyNames = comboBox1.SelectedItem.ToString(),
                 startDate = dateTimePicker1.Value.ToString(),
-                endDate = dateTimePicker2.Value.ToString()
+                endDate=dateTimePicker2.Value.ToString()
             };
             var response = mnbService.GetExchangeRates(request);
             var result = response.GetExchangeRatesResult;
