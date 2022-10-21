@@ -13,6 +13,7 @@ namespace week05_aqefte
 {
     public partial class Form1 : Form
     {
+        BindingList<Entities.RateData> Rates = new BindingList<Entities.RateData>();
         public Form1()
         {
             InitializeComponent();
