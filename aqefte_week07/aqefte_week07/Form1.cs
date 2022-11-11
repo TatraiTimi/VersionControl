@@ -70,7 +70,31 @@ namespace aqefte_week07
 
         private void button_save_Click(object sender, EventArgs e)
         {
-            
+            SaveFileDialog sfd = new SaveFileDialog();
+
+            sfd.InitialDirectory = Application.StartupPath; 
+            sfd.DefaultExt = "csv"; 
+            sfd.AddExtension = true; 
+
+
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+
+
+            using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+            {
+                System.Collections.IList list = Portfolio;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    List<decimal> p = (List<decimal>)list[i];
+                    sw.Write("Időszak");
+                    sw.Write("Nyereség");
+                    sw.Write((decimal)p.Count);
+                    
+                }
+                
+            }
         }
+
     }
 }
+
