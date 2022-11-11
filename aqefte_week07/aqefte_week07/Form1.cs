@@ -30,6 +30,6 @@ namespace aqefte_week07
             Portfolio.Add(new Entities.PortfolioItem() { Index = "OTP", Volume = 10 });
             Portfolio.Add(new Entities.PortfolioItem() { Index = "ZWACK", Volume = 10 });
             Portfolio.Add(new Entities.PortfolioItem() { Index = "ELMU", Volume = 10 });
-        }
+            dataGridView2.DataSource = Portfolio;
     }
 }
