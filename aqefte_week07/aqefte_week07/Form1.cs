@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,6 +66,11 @@ namespace aqefte_week07
             Portfolio.Add(new Entities.PortfolioItem() { Index = "ZWACK", Volume = 10 });
             Portfolio.Add(new Entities.PortfolioItem() { Index = "ELMU", Volume = 10 });
             dataGridView2.DataSource = Portfolio;
+        }
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
