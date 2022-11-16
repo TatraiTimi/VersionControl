@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace aqefte_week06.Abstractions
 {
-    internal interface IToyFactory
+    public interface IToyFactory
     {
         Toy CreateNew();
     }

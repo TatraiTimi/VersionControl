@@ -9,7 +9,7 @@ namespace aqefte_week06.Entities
 {
     internal class CarFactory : IToyFactory
     {
-        public Toy CreateNew()
+        public Abstractions.Toy CreateNew()
         {
             return new Car();   
         }
