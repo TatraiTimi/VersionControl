@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace aqefte_week06.Entities
 {
-    internal class Ball:Label
+    public class Ball:Label
     {
         public Ball()
         {
