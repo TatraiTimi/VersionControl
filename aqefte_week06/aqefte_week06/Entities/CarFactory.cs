@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace aqefte_week06.Entities
 {
-    public class BallFactoryí : IToyFactory
+    internal class CarFactory : IToyFactory
     {
         public Toy CreateNew()
         {
-            return new Ball();
+            return new Car();   
         }
     }
 }
