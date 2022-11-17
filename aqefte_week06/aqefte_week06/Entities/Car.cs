@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace aqefte_week06.Entities
 {
-    internal class Car : Abstractions.Toy
+    public class Car : Abstractions.Toy
     {
         protected override void DrawImage(Graphics g)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace aqefte_week06.Entities
 {
-    internal class CarFactory : IToyFactory
+    public class CarFactory : IToyFactory
     {
         public Abstractions.Toy CreateNew()
         {
