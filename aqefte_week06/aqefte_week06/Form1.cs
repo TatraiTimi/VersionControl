@@ -73,8 +73,15 @@ namespace aqefte_week06
                 _toys.Remove(oldestToy);
             }
         }
-        
 
+        private void buttonColor_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
 
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK) return;
+            button.BackColor = colorPicker.Color;
+        }
     }
 }
