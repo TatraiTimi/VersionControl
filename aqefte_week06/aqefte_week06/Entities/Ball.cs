@@ -9,11 +9,18 @@ using System.Windows.Forms;
 
 namespace aqefte_week06.Entities
 {
-    public class Toy : Abstractions.Toy
+    public class Ball : Toy
     {
+
+        public SolidBrush BallColor { get; set; }
+
+        public Ball(Color color)
+        {
+            BallColor=new SolidBrush(color);
+        }
         protected override void DrawImage(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
+            g.FillEllipse(BallColor, 0, 0, Width, Height);
         }
     }
 }

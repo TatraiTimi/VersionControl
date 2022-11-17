@@ -15,7 +15,7 @@ namespace aqefte_week06
 {
     public partial class Form1 : Form
     {
-        List<Abstractions.Toy> _toys=new List<Abstractions.Toy>();
+        List<Abstractions.Toy> _toys = new List<Abstractions.Toy>();
         private Abstractions.Toy _nexttoy;
         private IToyFactory _factory;
         public IToyFactory Factory
@@ -38,7 +38,10 @@ namespace aqefte_week06
 
         private void buttonBall_Click(object sender, EventArgs e)
         {
-            Factory = new BallFactory();
+            Factory = new BallFactory
+            {
+                BallColor = buttonColor.BackColor,
+            };
         }
         private void DisplayNext()
         {
@@ -64,9 +67,9 @@ namespace aqefte_week06
             {
                 toy.MoveToy();
                 if (toy.Left > maxPosition) maxPosition = toy.Left;
-                
+
             }
-            if (maxPosition>1000)
+            if (maxPosition > 1000)
             {
                 var oldestToy = _toys[0];
                 mainPanel.Controls.Remove(oldestToy);
