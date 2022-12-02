@@ -72,11 +72,9 @@ namespace aqefte_week09
                     var line = sr.ReadLine().Split(';');
                     deathProbabilities.Add(new DeathProbability()
                     {
-                        Gender = (Gender)Enum.Parse(typeof(Gender),
-                        Age = int.Parse(line[1]),
-                        DProbability = double.Parse(line[2])
-
-
+                        Gender = (Gender)Enum.Parse(typeof(Gender),line[0]),
+                        Age=int.Parse(line[1]),
+                        DProbability=double.Parse(line[2])
                     });
                 }
             }
