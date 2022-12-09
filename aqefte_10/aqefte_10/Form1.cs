@@ -31,12 +31,6 @@ namespace aqefte_10
             {
                 gc.AddPlayer(nbrOfSteps);
             }
-            var playerList = from p in gc.GetCurrentPlayers()
-                             orderby p.GetFitness() descending
-                             select p;
-            var topPerformers = playerList.Take(populatioinSize / 2).ToList();
-
-            
         }
 
         private void Gc_GameOver(object sender)
@@ -45,6 +39,10 @@ namespace aqefte_10
             label1.Text = string.Format(
                 "{0}. generáció",
                 generation);
+            var playerList = from p in gc.GetCurrentPlayers()
+                             orderby p.GetFitness() descending
+                             select p;
+            var topPerformers = playerList.Take(populatioinSize / 2).ToList();
 
             gc.ResetCurrentLevel();
             foreach (var p in topPerformers)
@@ -70,7 +68,16 @@ namespace aqefte_10
                 gc.GameOver -= Gc_GameOver;
                 return;
             }
-            gc.Start();
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
         }
     }
 }
