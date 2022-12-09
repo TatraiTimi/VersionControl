@@ -15,13 +15,21 @@ namespace aqefte_10
     {
         GameController gc = new GameController();
         GameArea ga;
+        int populatioinSize = 100;
+        int nbrOfSteps = 10;
+        int nbrOfStepImcrement = 10;
+        int generation = 1;
         public Form1()
         {
             InitializeComponent();
             ga = gc.ActivateDisplay();
             this.Controls.Add(ga);
-            gc.AddPlayer();
-            gc.Start(true);
+            for (int i = 0; i < populatioinSize; i++)
+            {
+                gc.AddPlayer(nbrOfSteps);
+            }
+            
+            gc.Start();
         }
     }
 }
