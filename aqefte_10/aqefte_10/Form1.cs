@@ -17,7 +17,7 @@ namespace aqefte_10
         GameArea ga;
         int populatioinSize = 100;
         int nbrOfSteps = 10;
-        int nbrOfStepIncrement = 10;
+        int nbrOfStepsIncrement = 10;
         int generation = 1;
         public Form1()
         {
@@ -34,7 +34,7 @@ namespace aqefte_10
                              orderby p.GetFitness() descending
                              select p;
             var topPerformers = playerList.Take(populatioinSize / 2).ToList();
-            gc.Start();
+            //gc.Start();
         }
 
         private void Gc_GameOver(object sender)
@@ -43,6 +43,22 @@ namespace aqefte_10
             label1.Text = string.Format(
                 "{0}. generáció",
                 generation);
+
+            gc.ResetCurrentLevel();
+            foreach (var p in topPerformers)
+            {
+                var b = p.Brain.Clone();
+                if (generation % 3 == 0)
+                    gc.AddPlayer(b.ExpandBrain(nbrOfStepsIncrement));
+                else
+                    gc.AddPlayer(b);
+
+                if (generation % 3 == 0)
+                    gc.AddPlayer(b.Mutate().ExpandBrain(nbrOfStepsIncrement));
+                else
+                    gc.AddPlayer(b.Mutate());
+            }
+            gc.Start();
         }
     }
 }
